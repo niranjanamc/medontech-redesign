@@ -278,3 +278,37 @@ html[data-theme="light"] .tesla-overlay {
   letter-spacing: 0.12em;
   font-weight: 300;
 }
+
+/* Brand Logo adjustments */
+.brand-logo-img {
+  max-width: 100%;
+  transition: filter 0.3s ease;
+}
+
+html[data-theme="dark"] .brand-logo-img {
+  filter: invert(1) brightness(1.8) contrast(1.1);
+}
+
+/* Mega Menu slide animation */
+@keyframes slideDownMenu {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mega-menu-link {
+  color: var(--text-primary) !important;
+  display: inline-block;
+}
+
+.mega-menu-link:hover {
+  color: var(--accent-primary) !important;
+  transform: translateX(4px);
+}
+
+

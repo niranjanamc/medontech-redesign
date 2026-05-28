@@ -31,37 +31,23 @@ export const Footer: React.FC = () => {
         }}>
           {/* Logo & Corporate Tagline */}
           <div style={{ gridColumn: 'span 2', minWidth: '260px' }} className="footer-brand">
-            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-              <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" rx="20" fill="url(#footer-logo-grad)" />
-                <path d="M30 50C30 38.9543 38.9543 30 50 30C61.0457 30 70 38.9543 70 50C70 61.0457 61.0457 70 50 70C38.9543 70 30 61.0457 30 50Z" stroke="white" strokeWidth="8" />
-                <circle cx="50" cy="50" r="10" fill="white" />
-                <defs>
-                  <linearGradient id="footer-logo-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="var(--accent-secondary)" />
-                    <stop offset="1" stopColor="var(--accent-primary)" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 800,
-                  fontSize: '18px',
-                  letterSpacing: '-0.02em',
-                  color: 'var(--text-primary)',
-                  lineHeight: 1.1
-                }}>MEDONTECH</span>
-                <span style={{
-                  fontSize: '9px',
-                  letterSpacing: '0.15em',
-                  color: 'var(--text-muted)',
-                  fontWeight: 600
-                }}>ENGINEERING SERVICES</span>
-              </div>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+              <img 
+                src="images/logo1.png" 
+                alt="Medontech Logo" 
+                style={{ height: '36px', objectFit: 'contain' }}
+                className="brand-logo-img"
+              />
             </Link>
-            <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '24px', maxWidth: '300px' }}>
-              Specializing in premium Product Design, PCB Layout, SI/EMI/PI/Thermal Simulations, and end-to-end Manufacturing services globally.
+            <p style={{ 
+              fontSize: '14px', 
+              color: 'var(--text-secondary)', 
+              marginBottom: '24px', 
+              maxWidth: '300px',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word'
+            }}>
+              Specializing in premium Product Design, PCB Layout, SI / EMI / PI / Thermal Simulations, and end-to-end Manufacturing services globally.
             </p>
             {/* Social Icons */}
             <div style={{ display: 'flex', gap: '12px' }}>
