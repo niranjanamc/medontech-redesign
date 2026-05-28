@@ -1,107 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Syncopate:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
   /* Fonts */
-  --font-heading: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-logo: 'Syncopate', -apple-system, sans-serif;
+  --font-heading: 'Montserrat', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
   
-  /* Shared Defaults */
-  --border-radius-sm: 8px;
-  --border-radius-md: 16px;
-  --border-radius-lg: 24px;
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --max-width-content: 1200px;
+  /* Layout Shared defaults */
+  --border-radius-pill: 20px;
+  --border-radius-md: 12px;
+  --transition-tesla: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: all 0.2s ease;
   
-  /* Light Theme Variables */
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
-  --bg-nav: rgba(255, 255, 255, 0.8);
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --accent-primary: #0284c7;
-  --accent-secondary: #0ea5e9;
-  --accent-glow: rgba(14, 165, 233, 0.1);
-  --border-color: rgba(15, 23, 42, 0.08);
-  --border-glow: rgba(14, 165, 233, 0.2);
-  --card-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.02);
-  --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(15, 23, 42, 0.06);
-  --scrollbar-thumb: #cbd5e1;
-  --scrollbar-track: #f1f5f9;
-  
-  color-scheme: light dark;
-}
-
-/* Dark Theme Variables Override (via system media query or manual tag) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #080a0c;
-    --bg-secondary: #0f1216;
-    --bg-tertiary: #171c22;
-    --bg-nav: rgba(8, 10, 12, 0.8);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --accent-primary: #00f2fe;
-    --accent-secondary: #4facfe;
-    --accent-glow: rgba(0, 242, 254, 0.08);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-glow: rgba(0, 242, 254, 0.25);
-    --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-    --glass-bg: rgba(15, 18, 22, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --scrollbar-thumb: #334155;
-    --scrollbar-track: #0f1216;
-  }
-}
-
-/* Explicit theme overrides (pinned via JavaScript) */
-html[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
-  --bg-nav: rgba(255, 255, 255, 0.8);
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --accent-primary: #0284c7;
-  --accent-secondary: #0ea5e9;
-  --accent-glow: rgba(14, 165, 233, 0.1);
-  --border-color: rgba(15, 23, 42, 0.08);
-  --border-glow: rgba(14, 165, 233, 0.2);
-  --card-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.02);
-  --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(15, 23, 42, 0.06);
-  --scrollbar-thumb: #cbd5e1;
-  --scrollbar-track: #f1f5f9;
-  color-scheme: light;
-}
-
-html[data-theme="dark"] {
-  --bg-primary: #080a0c;
-  --bg-secondary: #0f1216;
-  --bg-tertiary: #171c22;
-  --bg-nav: rgba(8, 10, 12, 0.8);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  /* Tesla Theme: Dark Mode (Default Obsidian) */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #121212;
+  --bg-nav: rgba(0, 0, 0, 0.4);
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #8e8e93;
   --accent-primary: #00f2fe;
   --accent-secondary: #4facfe;
-  --accent-glow: rgba(0, 242, 254, 0.08);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(0, 242, 254, 0.25);
-  --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-  --glass-bg: rgba(15, 18, 22, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --scrollbar-thumb: #334155;
-  --scrollbar-track: #0f1216;
+  --accent-glow: rgba(0, 242, 254, 0.1);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(255, 255, 255, 0.2);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+  --glass-bg: rgba(10, 10, 10, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --scrollbar-thumb: #222222;
+  --scrollbar-track: #000000;
+  
   color-scheme: dark;
 }
 
-/* Global Resets */
+/* Light Theme overrides (Clean Studio look) */
+html[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f4;
+  --bg-tertiary: #ececec;
+  --bg-nav: rgba(255, 255, 255, 0.4);
+  --text-primary: #171717;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
+  --accent-primary: #0ea5e9;
+  --accent-secondary: #0284c7;
+  --accent-glow: rgba(14, 165, 233, 0.1);
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 0, 0, 0.15);
+  --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --scrollbar-thumb: #d4d4d8;
+  --scrollbar-track: #ffffff;
+  
+  color-scheme: light;
+}
+
+/* Resets */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -120,45 +76,32 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Typographical Defaults */
+/* Typography settings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
-  font-weight: 700;
-  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 3rem;
-  letter-spacing: -0.05em;
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
   @media (max-width: 768px) { font-size: 2.2rem; }
 }
 
 h2 {
   font-size: 2rem;
-  letter-spacing: -0.03em;
-  @media (max-width: 768px) { font-size: 1.6rem; }
-}
-
-h3 {
-  font-size: 1.5rem;
+  font-weight: 500;
   letter-spacing: -0.02em;
+  @media (max-width: 768px) { font-size: 1.6rem; }
 }
 
 a {
   color: inherit;
   text-decoration: none;
   transition: var(--transition-fast);
-}
-
-ul, ol {
-  list-style: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 button {
@@ -177,12 +120,12 @@ html {
 
 @supports not (scrollbar-color: auto) {
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb);
-    border-radius: 4px;
+    border-radius: 3px;
   }
   ::-webkit-scrollbar-track {
     background: var(--scrollbar-track);
@@ -192,9 +135,9 @@ html {
 /* Layout Utilities */
 .container {
   width: 100%;
-  max-width: var(--max-width-content);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
 }
 
 .flex-center {
@@ -203,131 +146,135 @@ html {
   justify-content: center;
 }
 
-.grid-responsive {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+/* Tesla Snap Scroll Settings */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
 }
 
-/* Premium Visual Design System classes */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--card-shadow);
-  transition: var(--transition-smooth);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-  color: #ffffff !important;
-  font-family: var(--font-heading);
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: var(--border-radius-sm);
-  box-shadow: 0 4px 20px var(--accent-glow);
-  transition: var(--transition-smooth);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px var(--border-glow);
-  opacity: 0.95;
-}
-
-.btn-secondary {
-  border: 1px solid var(--border-color);
-  background: transparent;
-  color: var(--text-primary);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: var(--border-radius-sm);
-  transition: var(--transition-smooth);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-secondary:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--text-secondary);
-}
-
-.premium-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-md);
-  padding: 32px;
-  box-shadow: var(--card-shadow);
-  transition: var(--transition-smooth);
+.snap-section {
+  scroll-snap-align: start;
+  height: 100vh;
+  width: 100vw;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px 0 80px;
 }
 
-.premium-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-glow);
-  box-shadow: 0 20px 45px -15px var(--accent-glow), var(--card-shadow);
-}
-
-.premium-card::before {
-  content: '';
+/* Full-bleed background image with Dark gradient overlay */
+.full-bleed-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
-  opacity: 0;
-  transition: var(--transition-smooth);
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
-.premium-card:hover::before {
-  opacity: 1;
-}
-
-/* Micro animations */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes pulse-soft {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-}
-
-.pulse-glow {
-  position: relative;
-}
-.pulse-glow::after {
-  content: '';
+.tesla-overlay {
   position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: var(--transition-smooth);
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 2;
 }
-.pulse-glow:hover::after {
-  opacity: 0.4;
-  animation: pulse-soft 2s infinite;
+
+html[data-theme="light"] .tesla-overlay {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.5) 100%);
+}
+
+.section-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+}
+
+/* Tesla style floating navigation dropdown frosted header style */
+.tesla-header-active {
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  background: var(--glass-bg) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* Pill CTA Buttons */
+.btn-tesla-dark {
+  background-color: rgba(23, 23, 23, 0.8);
+  color: #ffffff;
+  padding: 12px 64px;
+  border-radius: var(--border-radius-pill);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: var(--transition-tesla);
+  border: 1px solid transparent;
+  backdrop-filter: blur(4px);
+}
+
+.btn-tesla-dark:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #171717;
+  transform: scale(1.02);
+}
+
+.btn-tesla-light {
+  background-color: rgba(244, 244, 244, 0.65);
+  color: #171717;
+  padding: 12px 64px;
+  border-radius: var(--border-radius-pill);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: var(--transition-tesla);
+  border: 1px solid transparent;
+  backdrop-filter: blur(4px);
+}
+
+.btn-tesla-light:hover {
+  background-color: rgba(23, 23, 23, 0.95);
+  color: #ffffff;
+  transform: scale(1.02);
+}
+
+/* Premium Card (Glassmorphism card) */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--border-radius-md);
+  padding: 32px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-tesla);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glow);
+}
+
+/* Wide Typography Tracking */
+.logo-font {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--text-primary);
+}
+
+.heading-wide {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 300;
 }

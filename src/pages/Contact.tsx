@@ -41,6 +41,7 @@ export const Contact: React.FC = () => {
     <div style={{ paddingTop: '72px', background: 'var(--bg-primary)', minHeight: '100vh' }}>
       {/* Banner */}
       <section style={bannerStyle}>
+        <div className="tesla-overlay" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <h1 style={{ fontSize: '3rem', fontWeight: 800, color: 'white', marginBottom: '12px' }}>Contact Us</h1>
           <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '18px', maxWidth: '600px' }}>
@@ -170,11 +171,31 @@ export const Contact: React.FC = () => {
                   <textarea required id="message" name="message" rows={5} value={form.message} onChange={handleChange} style={textareaStyle} placeholder="Include board specs, layers, or targeted delivery timeline..." />
                 </div>
 
-                <button type="submit" disabled={isSubmitting} className="btn-primary" style={{
-                  justifyContent: 'center',
-                  padding: '14px',
-                  marginTop: '10px'
-                }}>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="contact-submit-btn"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    width: '100%',
+                    padding: '12px',
+                    borderRadius: 'var(--border-radius-pill)',
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    transition: 'var(--transition-tesla)',
+                    background: 'rgba(23, 23, 23, 0.8)',
+                    color: '#ffffff',
+                    border: '1px solid var(--border-color)',
+                    backdropFilter: 'blur(4px)',
+                    marginTop: '10px'
+                  }}
+                >
                   {isSubmitting ? 'Sending Request...' : (
                     <>
                       <Send size={16} />
@@ -187,14 +208,21 @@ export const Contact: React.FC = () => {
           </div>
         </div>
       </div>
+      <style>{`
+        .contact-submit-btn:hover {
+          background-color: rgba(255, 255, 255, 0.95) !important;
+          color: #171717 !important;
+          transform: scale(1.02);
+        }
+      `}</style>
     </div>
   );
 };
 
 // Styling definitions
 const bannerStyle: React.CSSProperties = {
-  padding: '80px 0',
-  background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+  padding: '120px 0 80px',
+  background: 'linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(images/careers_medonian.png) center/cover no-repeat',
   textAlign: 'left',
   borderBottom: '1px solid var(--border-color)',
   position: 'relative'

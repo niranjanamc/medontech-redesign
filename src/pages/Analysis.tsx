@@ -224,8 +224,8 @@ export const Analysis: React.FC = () => {
 
 // Styling
 const bannerStyle: React.CSSProperties = {
-  padding: '80px 0',
-  background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+  padding: '120px 0 80px',
+  background: 'linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(images/thermal_sim.png) center/cover no-repeat',
   textAlign: 'left',
   borderBottom: '1px solid var(--border-color)',
   position: 'relative'

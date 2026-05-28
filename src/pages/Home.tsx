@@ -1,313 +1,196 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Cpu, Activity, ShieldCheck, Hammer, Layers, Layout, ChevronRight } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+
+interface SlideSection {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  primaryCta: { text: string; path: string };
+  secondaryCta?: { text: string; path: string };
+}
 
 export const Home: React.FC = () => {
-  const tools = [
-    { name: 'Cadence Allegro', category: 'PCB & SI' },
-    { name: 'Mentor Graphics', category: 'EDA & Analysis' },
-    { name: 'Altium Designer', category: 'PCB Layout' },
-    { name: 'Zuken CR-5000', category: 'System Design' },
-    { name: 'SolidWorks', category: 'Mechanical' },
-    { name: 'PTC Creo', category: 'Mechanical' },
-    { name: 'CAM350', category: 'DFM/Fabrication' }
-  ];
-
-  const categories = [
+  const slides: SlideSection[] = [
     {
-      title: 'Product Design',
-      icon: <Layers size={24} />,
-      desc: 'Complete board-level hardware design from conceptual design and schematics to board testing and transfer to mass production.',
-      link: '/services?tab=product'
+      id: 'hero',
+      title: 'MEDONTECH',
+      subtitle: 'Accelerating Tomorrow\'s Hardware Innovation',
+      image: 'images/pcb_hero.png',
+      primaryCta: { text: 'Explore Services', path: '/services' },
+      secondaryCta: { text: 'Get In Touch', path: '/contact' }
     },
     {
-      title: 'PCB layout Design',
-      icon: <Cpu size={24} />,
-      desc: 'Expertise in high-speed, high-density, multi-layer rigid and flex PCBs (up to 38 layers, 10Gbps+ frequency, and fine-pitch BGAs).',
-      link: '/services?tab=pcb'
+      id: 'design',
+      title: 'DESIGN SERVICES',
+      subtitle: 'High-speed, high-density multilayer layouts up to 38 layers',
+      image: 'images/product_design.png',
+      primaryCta: { text: 'Product Design', path: '/services?tab=product' },
+      secondaryCta: { text: 'PCB Layout', path: '/services?tab=pcb' }
     },
     {
-      title: 'Simulation & Analysis',
-      icon: <Activity size={24} />,
-      desc: 'Advanced post-layout verification: Signal Integrity (SI), Power Integrity (PI), Thermal Analysis, and EMI/EMC compliance.',
-      link: '/analysis?tab=si'
+      id: 'analysis',
+      title: 'SIMULATION & ANALYSIS',
+      subtitle: 'Advanced SI / PI compliance and Thermal CFD cooling calculations',
+      image: 'images/thermal_sim.png',
+      primaryCta: { text: 'Signal Integrity', path: '/analysis?tab=si' },
+      secondaryCta: { text: 'Thermal Analysis', path: '/analysis?tab=thermal' }
     },
     {
-      title: 'Mechanical Design',
-      icon: <Layout size={24} />,
-      desc: 'Modular drafting and 3D modeling including tool engineering, reverse engineering, legacy conversion, and enclosure design.',
-      link: '/services?tab=mechanical'
+      id: 'manufacturing',
+      title: 'MANUFACTURING SERVICES',
+      subtitle: 'Prototype fabrication, automated PCBA, and global sourcing',
+      image: 'images/robot_assembly.png',
+      primaryCta: { text: 'Assembly & Sourcing', path: '/manufacturing?tab=assembly' },
+      secondaryCta: { text: 'Bare-Board Fab', path: '/manufacturing?tab=fabrication' }
     },
     {
-      title: 'Electronics Manufacturing',
-      icon: <Hammer size={24} />,
-      desc: 'Full-service prototyping, high-volume assembly support, global component sourcing, and RoHS compliance services.',
-      link: '/manufacturing?tab=fabrication'
-    },
-    {
-      title: 'DFx Quality Analysis',
-      icon: <ShieldCheck size={24} />,
-      desc: 'Design for Manufacturing (DFM), Design for Assembly (DFA), and Design for Testing (DFT) pre-engineering checklists.',
-      link: '/manufacturing?tab=dfx'
+      id: 'careers',
+      title: 'BEING A MEDONIAN',
+      subtitle: 'Collaborate with first-class minds in a tech-driven lab workspace',
+      image: 'images/careers_medonian.png',
+      primaryCta: { text: 'Join Our Team', path: '/company?sec=careers' }
     }
   ];
 
   return (
-    <div style={{ paddingTop: '72px' }}>
-      {/* Hero Section */}
-      <section style={heroSectionStyle}>
-        {/* Animated Background Spotlights */}
-        <div style={gridBackgroundStyle} />
-        <div style={spotlightStyle} />
+    <div className="snap-container">
+      {slides.map((slide, index) => (
+        <section key={slide.id} className="snap-section">
+          {/* Background image & custom dark overlay */}
+          <img src={slide.image} alt={slide.title} className="full-bleed-bg" />
+          <div className="tesla-overlay" />
 
-        <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-          <div style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '8px', 
-            background: 'var(--accent-glow)',
-            border: '1px solid var(--border-glow)',
-            padding: '6px 14px',
-            borderRadius: '20px',
-            fontSize: '12px',
-            fontWeight: 600,
-            color: 'var(--text-primary)',
-            marginBottom: '24px'
-          }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent-primary)', display: 'inline-block' }} />
-            Trusted Global Engineering Partner
-          </div>
-
-          <h1 style={{
-            fontSize: '4rem',
-            lineHeight: 1.15,
-            fontWeight: 800,
-            maxWidth: '900px',
-            margin: '0 auto 24px',
-            fontFamily: 'var(--font-heading)',
-            color: 'var(--text-primary)'
-          }}>
-            Accelerating Tomorrow&apos;s <span className="gradient-text">Hardware Innovation</span>
-          </h1>
-
-          <p style={{
-            fontSize: '18px',
-            color: 'var(--text-secondary)',
-            maxWidth: '650px',
-            margin: '0 auto 40px',
-            lineHeight: 1.6
-          }}>
-            Medontech provides premium end-to-end engineering design, simulation, and manufacturing solutions for Networking, Telecom, Aerospace, and Automotive markets.
-          </p>
-
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/services" className="btn-primary">
-              Explore Services
-              <ArrowRight size={16} />
-            </Link>
-            <Link to="/contact" className="btn-secondary">
-              Request Technical Consultation
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Stats or Highlights */}
-      <section style={{ padding: '60px 0', borderBottom: '1px solid var(--border-color)', background: 'var(--bg-secondary)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', textAlign: 'center' }}>
-            <div>
-              <div style={statNumberStyle}>10+</div>
-              <div style={statLabelStyle}>Years Experience</div>
-            </div>
-            <div>
-              <div style={statNumberStyle}>38</div>
-              <div style={statLabelStyle}>Max Layers Supported</div>
-            </div>
-            <div>
-              <div style={statNumberStyle}>24/7</div>
-              <div style={statLabelStyle}>Project Support Support</div>
-            </div>
-            <div>
-              <div style={statNumberStyle}>100%</div>
-              <div style={statLabelStyle}>IPC Certified Layouts</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Categories Grid */}
-      <section style={{ padding: '100px 0', background: 'var(--bg-primary)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Core Engineering Capabilities</h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
-              We provide professional engineering talent and tools to help you design, simulate, verify, and fabricate next-generation electronic products.
+          {/* Section Info (Top) */}
+          <div className="section-content animate-slide-down" style={{ marginTop: '40px' }}>
+            <h1 className="heading-wide" style={{
+              fontSize: slide.id === 'hero' ? '3.5rem' : '2.5rem',
+              fontWeight: 300,
+              marginBottom: '10px',
+              color: 'var(--text-primary)'
+            }}>
+              {slide.title}
+            </h1>
+            <p style={{
+              fontSize: '15px',
+              color: 'var(--text-secondary)',
+              letterSpacing: '0.02em',
+              fontWeight: 400
+            }}>
+              {slide.subtitle}
             </p>
           </div>
 
-          <div className="grid-responsive">
-            {categories.map((cat, idx) => (
-              <div key={idx} className="premium-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'var(--accent-glow)',
-                  color: 'var(--accent-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '24px'
-                }}>
-                  {cat.icon}
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '12px', color: 'var(--text-primary)' }}>
-                  {cat.title}
-                </h3>
-                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '24px', flexGrow: 1 }}>
-                  {cat.desc}
-                </p>
-                <Link to={cat.link} style={{
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  color: 'var(--accent-primary)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  marginTop: 'auto'
-                }}>
-                  Learn More
-                  <ChevronRight size={14} />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Scrolling Wrapper */}
-      <section style={{ padding: '80px 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)', background: 'var(--bg-secondary)', overflow: 'hidden' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h2 style={{ fontSize: '1.6rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-muted)' }}>Tools & EDA Platform Focus</h2>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px' }}>
-            {tools.map((tool, idx) => (
-              <div key={idx} className="glass-panel" style={{
-                padding: '16px 24px',
-                borderRadius: '8px',
-                border: '1px solid var(--border-color)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                minWidth: '160px',
-                background: 'var(--bg-primary)'
-              }}>
-                <span style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '4px' }}>{tool.name}</span>
-                <span style={{ fontSize: '11px', color: 'var(--accent-primary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{tool.category}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA section */}
-      <section style={{ padding: '100px 0', background: 'var(--bg-primary)', position: 'relative' }}>
-        <div className="container">
-          <div className="glass-panel" style={{
-            padding: '64px 32px',
-            textAlign: 'center',
-            background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-color)',
-            borderRadius: 'var(--border-radius-lg)',
-            boxShadow: 'var(--card-shadow)',
-            position: 'relative',
-            overflow: 'hidden'
+          {/* CTA Buttons (Bottom) */}
+          <div className="section-content animate-fade-in" style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '16px',
+            marginBottom: '20px'
           }}>
-            {/* Subtle decor gradient */}
             <div style={{
-              position: 'absolute',
-              top: '-100px',
-              right: '-100px',
-              width: '300px',
-              height: '300px',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)',
-              zIndex: 1
-            }} />
-            
-            <div style={{ position: 'relative', zIndex: 2 }}>
-              <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Ready to launch your next project?</h2>
-              <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 32px', fontSize: '16px' }}>
-                Connect with our engineering experts to review your requirements, stack-ups, and receive a comprehensive manufacturing checklist & quote.
-              </p>
-              <Link to="/contact" className="btn-primary">
-                Get an Estimate
-                <ArrowRight size={16} />
+              display: 'flex',
+              gap: '24px',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              width: '100%'
+            }}>
+              <Link to={slide.primaryCta.path} className="btn-tesla-dark">
+                {slide.primaryCta.text}
               </Link>
+              {slide.secondaryCta && (
+                <Link to={slide.secondaryCta.path} className="btn-tesla-light">
+                  {slide.secondaryCta.text}
+                </Link>
+              )}
             </div>
-          </div>
-        </div>
-      </section>
 
+            {/* Down Chevron indicator (only visible on non-last sections) */}
+            {index < slides.length - 1 && (
+              <ChevronDown 
+                size={28} 
+                className="chevron-bounce" 
+                style={{ 
+                  color: 'white', 
+                  cursor: 'pointer',
+                  marginTop: '16px',
+                  opacity: 0.65
+                }} 
+                onClick={() => {
+                  const nextSec = document.querySelectorAll('.snap-section')[index + 1];
+                  nextSec?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              />
+            )}
+
+            {/* Minimalist Footer on last slide */}
+            {index === slides.length - 1 && (
+              <div className="tesla-home-footer" style={{
+                display: 'flex',
+                gap: '24px',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                marginTop: '32px',
+                fontSize: '11px',
+                color: 'rgba(255, 255, 255, 0.4)',
+                fontFamily: 'var(--font-heading)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                transition: 'var(--transition-tesla)'
+              }}>
+                <span>Medontech © {new Date().getFullYear()}</span>
+                <a href="mailto:services@medontech.com" className="home-footer-link">services@medontech.com</a>
+                <span>USA: (760) 466-7565</span>
+                <span>IND: +91-44-4330 0349</span>
+                <Link to="/contact" className="home-footer-link">Contact</Link>
+                <Link to="/downloads" className="home-footer-link">Downloads</Link>
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+
+      {/* Style Animations injection */}
       <style>{`
-        @keyframes rotate-bg {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        .chevron-bounce {
+          animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+          40% { transform: translateY(-8px); }
+          60% { transform: translateY(-4px); }
+        }
+        .animate-slide-down {
+          animation: slideDownFade 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        .animate-fade-in {
+          animation: fadeInOnly 1s ease-out forwards;
+        }
+        @keyframes slideDownFade {
+          from { transform: translateY(-20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInOnly {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .home-footer-link {
+          transition: color 0.3s ease;
+        }
+        .home-footer-link:hover {
+          color: #ffffff !important;
+        }
+        @media (max-width: 768px) {
+          .tesla-home-footer {
+            flex-direction: column !important;
+            gap: 10px !important;
+            margin-top: 16px !important;
+            align-items: center !important;
+          }
         }
       `}</style>
     </div>
   );
-};
-
-// CSS styles
-const heroSectionStyle: React.CSSProperties = {
-  position: 'relative',
-  padding: '160px 0 100px',
-  background: 'var(--bg-primary)',
-  overflow: 'hidden',
-};
-
-const gridBackgroundStyle: React.CSSProperties = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  opacity: 0.05,
-  backgroundImage: 'radial-gradient(var(--text-primary) 1px, transparent 1px)',
-  backgroundSize: '24px 24px',
-  zIndex: 1,
-};
-
-const spotlightStyle: React.CSSProperties = {
-  position: 'absolute',
-  top: '-10%',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: '80vw',
-  height: '80vh',
-  background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 60%)',
-  zIndex: 1,
-  pointerEvents: 'none',
-};
-
-const statNumberStyle: React.CSSProperties = {
-  fontFamily: 'var(--font-heading)',
-  fontSize: '3rem',
-  fontWeight: 800,
-  lineHeight: 1,
-  background: 'linear-gradient(135deg, var(--accent-secondary), var(--accent-primary))',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  marginBottom: '8px'
-};
-
-const statLabelStyle: React.CSSProperties = {
-  fontSize: '13px',
-  textTransform: 'uppercase',
-  letterSpacing: '0.1em',
-  fontWeight: 700,
-  color: 'var(--text-muted)'
 };

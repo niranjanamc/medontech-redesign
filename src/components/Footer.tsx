@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const location = useLocation();
+
+  if (location.pathname === '/') {
+    return null;
+  }
+
   return (
     <footer className="glass-panel" style={{
       borderBottom: 'none',

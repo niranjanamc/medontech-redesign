@@ -42,6 +42,7 @@ export const Downloads: React.FC = () => {
     <div style={{ paddingTop: '72px', background: 'var(--bg-primary)', minHeight: '100vh' }}>
       {/* Banner */}
       <section style={bannerStyle}>
+        <div className="tesla-overlay" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <h1 style={{ fontSize: '3rem', fontWeight: 800, color: 'white', marginBottom: '12px' }}>Downloads & Resources</h1>
           <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '18px', maxWidth: '600px' }}>
@@ -103,14 +104,17 @@ export const Downloads: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
-                    padding: '10px',
-                    borderRadius: 'var(--border-radius-sm)',
+                    padding: '12px',
+                    borderRadius: 'var(--border-radius-pill)',
                     fontSize: '13px',
                     fontWeight: 600,
-                    transition: 'var(--transition-fast)',
-                    background: completedId === brochure.title ? '#10b981' : 'var(--bg-tertiary)',
-                    color: completedId === brochure.title ? 'white' : 'var(--text-primary)',
-                    border: '1px solid var(--border-color)'
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    transition: 'var(--transition-tesla)',
+                    background: completedId === brochure.title ? '#10b981' : 'rgba(23, 23, 23, 0.8)',
+                    color: '#ffffff',
+                    border: '1px solid var(--border-color)',
+                    backdropFilter: 'blur(4px)'
                   }}
                   className="download-btn"
                 >
@@ -139,8 +143,9 @@ export const Downloads: React.FC = () => {
 
       <style>{`
         .download-btn:hover {
-          border-color: var(--accent-primary) !important;
-          color: var(--accent-primary) !important;
+          background-color: rgba(255, 255, 255, 0.95) !important;
+          color: #171717 !important;
+          transform: scale(1.02);
         }
         @keyframes spin {
           0% { transform: rotate(0deg); }
@@ -161,8 +166,8 @@ export const Downloads: React.FC = () => {
 
 // Banner styling
 const bannerStyle: React.CSSProperties = {
-  padding: '80px 0',
-  background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+  padding: '120px 0 80px',
+  background: 'linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(images/pcb_hero.png) center/cover no-repeat',
   textAlign: 'left',
   borderBottom: '1px solid var(--border-color)',
   position: 'relative'
