@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
 
@@ -87,6 +87,33 @@ export const Header: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const closeTimeoutRef = useRef<any>(null);
+
+  // Debounced menu hover handlers to allow crossing empty spacing
+  const handleMouseEnter = (title: string) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setActiveDropdown(title);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200);
+  };
+
+  const handleMegaMenuMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
+
+  const handleMegaMenuMouseLeave = () => {
+    handleMouseLeave();
+  };
 
   // Close menus on route change
   useEffect(() => {
@@ -94,18 +121,12 @@ export const Header: React.FC = () => {
     setActiveDropdown(null);
   }, [location]);
 
-  // Load and apply theme
+  // Load and apply theme (Dark Theme by default)
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initialTheme = prefersDark ? 'dark' : 'light';
-      setTheme(initialTheme);
-      document.documentElement.setAttribute('data-theme', initialTheme);
-    }
+    const initialTheme = savedTheme || 'dark';
+    setTheme(initialTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
   }, []);
 
   // Monitor scroll height inside the snap-container (for Home page) or window (for detail pages)
@@ -217,17 +238,17 @@ export const Header: React.FC = () => {
           {navSections.map((section) => (
             <div 
               key={section.title}
-              onMouseEnter={() => setActiveDropdown(section.title)}
-              onMouseLeave={() => setActiveDropdown(null)}
+              onMouseEnter={() => handleMouseEnter(section.title)}
+              onMouseLeave={handleMouseLeave}
               style={{ display: 'inline-block' }}
             >
               <button 
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '13px',
-                  fontWeight: 500,
+                  fontSize: '15px',
+                  fontWeight: 700,
                   letterSpacing: '0.05em',
-                  padding: '6px 16px',
+                  padding: '8px 20px',
                   borderRadius: '12px',
                   color: 'var(--text-primary)',
                   display: 'flex',
@@ -351,8 +372,8 @@ export const Header: React.FC = () => {
       {/* Mega menu dropdown */}
       {activeDropdown && (
         <div 
-          onMouseEnter={() => setActiveDropdown(activeDropdown)}
-          onMouseLeave={() => setActiveDropdown(null)}
+          onMouseEnter={handleMegaMenuMouseEnter}
+          onMouseLeave={handleMegaMenuMouseLeave}
           style={{
             position: 'fixed',
             top: '64px',
@@ -377,11 +398,11 @@ export const Header: React.FC = () => {
             <div key={cIdx} style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left', minWidth: '200px' }}>
               <h4 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '11px',
-                fontWeight: 700,
+                fontSize: '13px',
+                fontWeight: 800,
                 textTransform: 'uppercase',
                 letterSpacing: '0.12em',
-                color: 'var(--text-muted)',
+                color: 'var(--text-secondary)',
                 borderBottom: '1px solid var(--border-color)',
                 paddingBottom: '8px',
                 marginBottom: '4px'
@@ -395,8 +416,8 @@ export const Header: React.FC = () => {
                     to={item.path} 
                     style={{
                       fontFamily: 'var(--font-heading)',
-                      fontSize: '14px',
-                      fontWeight: 300,
+                      fontSize: '15px',
+                      fontWeight: 600,
                       transition: 'all 0.2s ease'
                     }}
                     className="mega-menu-link"
@@ -431,10 +452,10 @@ export const Header: React.FC = () => {
 
 const simpleLinkStyle: React.CSSProperties = {
   fontFamily: 'var(--font-heading)',
-  fontSize: '13px',
-  fontWeight: 500,
+  fontSize: '15px',
+  fontWeight: 700,
   letterSpacing: '0.05em',
-  padding: '6px 16px',
+  padding: '8px 20px',
   borderRadius: '12px',
   color: 'var(--text-primary)',
 };
