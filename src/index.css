@@ -279,14 +279,9 @@ html[data-theme="light"] .tesla-overlay {
   font-weight: 300;
 }
 
-/* Brand Logo adjustments */
+/* Brand Logo adjustments (Raw & unaltered as requested) */
 .brand-logo-img {
   max-width: 100%;
-  transition: filter 0.3s ease;
-}
-
-html[data-theme="dark"] .brand-logo-img {
-  filter: invert(1) brightness(1.8) contrast(1.1);
 }
 
 /* Mega Menu slide animation */
@@ -310,5 +305,34 @@ html[data-theme="dark"] .brand-logo-img {
   color: var(--accent-primary) !important;
   transform: translateX(4px);
 }
+
+/* Force dark theme variables for Home Page container regardless of html[data-theme] */
+.snap-container {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #121212;
+  --bg-nav: rgba(0, 0, 0, 0.4);
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #8e8e93;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(255, 255, 255, 0.2);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+  --glass-bg: rgba(10, 10, 10, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --scrollbar-thumb: #222222;
+  --scrollbar-track: #000000;
+}
+
+.snap-container .tesla-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.6) 100%) !important;
+}
+
+/* Force white header items on transparent header over home page slides */
+header:not(.tesla-header-active) .nav-btn-hover,
+header:not(.tesla-header-active) .desktop-nav a {
+  color: #ffffff !important;
+}
+
 
 
