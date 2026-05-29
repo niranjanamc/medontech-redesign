@@ -66,7 +66,7 @@ export const Home: React.FC = () => {
           <div className="section-content animate-slide-down" style={{ marginTop: '40px' }}>
             <h1 className="heading-wide" style={{
               fontSize: slide.id === 'hero' ? '3.5rem' : '2.5rem',
-              fontWeight: 300,
+              fontWeight: 500,
               marginBottom: '10px',
               color: 'var(--text-primary)'
             }}>
@@ -76,7 +76,7 @@ export const Home: React.FC = () => {
               fontSize: '15px',
               color: 'var(--text-secondary)',
               letterSpacing: '0.02em',
-              fontWeight: 400
+              fontWeight: 500
             }}>
               {slide.subtitle}
             </p>
