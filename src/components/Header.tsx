@@ -123,10 +123,16 @@ export const Header: React.FC = () => {
 
   // Load and apply theme (Dark Theme by default)
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const initialTheme = savedTheme || 'dark';
-    setTheme(initialTheme);
-    document.documentElement.setAttribute('data-theme', initialTheme);
+    try {
+      const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+      const initialTheme = savedTheme || 'dark';
+      setTheme(initialTheme);
+      document.documentElement.setAttribute('data-theme', initialTheme);
+    } catch (e) {
+      console.warn("localStorage not accessible:", e);
+      setTheme('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
   }, []);
 
   // Monitor scroll height inside the snap-container (for Home page) or window (for detail pages)
@@ -155,7 +161,11 @@ export const Header: React.FC = () => {
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
-    localStorage.setItem('theme', nextTheme);
+    try {
+      localStorage.setItem('theme', nextTheme);
+    } catch (e) {
+      console.warn("localStorage not accessible:", e);
+    }
     document.documentElement.setAttribute('data-theme', nextTheme);
   };
 

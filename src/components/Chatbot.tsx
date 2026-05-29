@@ -49,10 +49,14 @@ export const Chatbot: React.FC = () => {
 
   // Load API Key on Mount
   useEffect(() => {
-    const savedKey = localStorage.getItem('gemini_api_key');
-    if (savedKey) {
-      setApiKey(savedKey);
-      setHasApiKey(true);
+    try {
+      const savedKey = localStorage.getItem('gemini_api_key');
+      if (savedKey) {
+        setApiKey(savedKey);
+        setHasApiKey(true);
+      }
+    } catch (e) {
+      console.warn("localStorage not accessible:", e);
     }
   }, []);
 
@@ -96,7 +100,11 @@ export const Chatbot: React.FC = () => {
   const saveApiKey = (e: React.FormEvent) => {
     e.preventDefault();
     if (apiKey.trim()) {
-      localStorage.setItem('gemini_api_key', apiKey.trim());
+      try {
+        localStorage.setItem('gemini_api_key', apiKey.trim());
+      } catch (err) {
+        console.warn("localStorage not accessible:", err);
+      }
       setHasApiKey(true);
       setShowConfig(false);
       // Initialize chat session
@@ -115,7 +123,11 @@ export const Chatbot: React.FC = () => {
   };
 
   const removeApiKey = () => {
-    localStorage.removeItem('gemini_api_key');
+    try {
+      localStorage.removeItem('gemini_api_key');
+    } catch (e) {
+      console.warn("localStorage not accessible:", e);
+    }
     setApiKey('');
     setHasApiKey(false);
     chatSessionRef.current = null;
